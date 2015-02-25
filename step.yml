@@ -48,7 +48,7 @@ inputs:
     description: "Sets if should email testers about new version"
     is_required: false
     is_expand: false
-    value: ""
+    value: "off"
     value_options: ["on", "off"]
     is_dont_change_value: false
   - 
@@ -57,16 +57,16 @@ inputs:
     description: "If auto update is on all users will be prompt to update to this build next time they run the app"
     is_required: false
     is_expand: false
-    value: ""
+    value: "off"
     value_options: ["on", "off"]
     is_dont_change_value: false
   - 
     mapped_to: TESTFAIRY_MAX_TEST_DURATION
     title: "Recording duration"
-    description: "The maximum recording duration for every test."
+    description: "Maximum session recording length, eg 20m or 1h. Maximum 24h."
     is_required: false
     is_expand: false
-    value: ""
+    value: "10m"
     value_options: []
     is_dont_change_value: false
   - 
@@ -75,7 +75,7 @@ inputs:
     description: "Sets if video recording is enabled for this build."
     is_required: false
     is_expand: false
-    value: ""
+    value: "off"
     value_options: ["on", "wifi", "off"]
     is_dont_change_value: false
   - 

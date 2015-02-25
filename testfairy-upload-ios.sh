@@ -24,7 +24,7 @@ COMMENT="$TESTFAIRY_COMMENT"
 # locations of various tools
 CURL=curl
 
-SERVER_ENDPOINT=http://app.testfairy.com
+SERVER_ENDPOINT=https://app.testfairy.com
 
 usage() {
 	echo "Usage: testfairy-upload-ios.sh IPA_FILENAME"
