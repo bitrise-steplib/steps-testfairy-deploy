@@ -1,5 +1,9 @@
 #!/bin/sh
 
+THIS_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# load bash utils
+source "${THIS_SCRIPT_DIR}/bash_utils/formatted_output.sh"
+
 UPLOADER_VERSION=1.09
 
 # Tester Groups that will be notified when the app is ready. Setup groups in your TestFairy account testers page.
@@ -73,17 +77,21 @@ DATE=`date`
 /bin/echo -n "Uploading ${IPA_FILENAME} to TestFairy.. "
 JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${IPA_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
 
+MESSAGE=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"message"\s*:\s*"\([^"]*\)".*/\1/p' )
 URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"build_url"\s*:\s*"\([^"]*\)".*/\1/p' )
-if [ -z "$URL" ]; then
-	echo "FAILED!"
-	echo
-	echo "Build uploaded, but no reply from server. Please contact support@testfairy.com"
+
+if [ ! -z "$MESSAGE" ]; then
+	write_section_to_formatted_output "## Deploy Failed"
+	echo_string_to_formatted_output "Failed to upload the build due to the following error:"
+	echo_string_to_formatted_output "$MESSAGE"
+	exit 1
+elif [ -z "$URL" ]; then
+	write_section_to_formatted_output "## Deploy Failed"
+	echo_string_to_formatted_output "Build uploaded, but no reply from server. Please contact support@testfairy.com"
 	exit 1
 fi
 
-echo "OK!"
-echo
-echo "Build was successfully uploaded to TestFairy and is available at:"
-echo ${URL}
+write_section_to_formatted_output "## Deploy Success"
+echo_string_to_formatted_output "* **Build URL**: [${URL}](${URL})"
 
 exit 0
