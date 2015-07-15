@@ -35,6 +35,15 @@ inputs:
     value: ""
     is_dont_change_value: false
   - 
+    mapped_to: TESTFAIRY_DSYM_PATH
+    title: "dSYM path"
+    description: |
+      Path for the dSYM to upload to TestFairy.
+    is_required: false
+    is_expand: true
+    value: ""
+    is_dont_change_value: false
+  - 
     mapped_to: TESTFAIRY_TESTER_GROUPS
     title: "Tester groups"
     description: |
