@@ -1,11 +1,11 @@
-name: "TestFairy Deploy"
-description: |
+title: "TestFairy Deploy"
+summary: "TestFairy Deploy"
+description: |-
   To use this step you have to register
   an account on [TestFairy.com](http://testfairy.com/).
 website: https://github.com/bitrise-io/steps-testfairy-deploy
-fork_url: https://github.com/bitrise-io/steps-testfairy-deploy
-source:
-  git: https://github.com/bitrise-io/steps-testfairy-deploy.git
+source_code_url: https://github.com/bitrise-io/steps-testfairy-deploy
+support_url: https://github.com/bitrise-io/steps-testfairy-deploy/issues
 host_os_tags:
   - "osx-10.10"
 project_type_tags:
@@ -14,92 +14,96 @@ type_tags:
   - "testfairy"
   - "deploy"
 is_requires_admin_user: false
+is_always_run: false
+is_skippable: false
+dependencies: []
+run_if: ""
 inputs:
-  - 
-    mapped_to: TESTFAIRY_API_KEY
-    title: "TestFairy API key"
-    description: |
-      API key from TestFairy.
-      You can find your API key under the settings menu.
-    is_required: true
-    is_expand: false
-    value: ""
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_IPA_PATH
-    title: "IPA path"
-    description: |
-      Path for the IPA to upload to TestFairy.
-    is_required: true
-    is_expand: true
-    value: ""
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_DSYM_PATH
-    title: "dSYM path"
-    description: |
-      Path for the dSYM to upload to TestFairy.
-    is_required: false
-    is_expand: true
-    value: ""
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_TESTER_GROUPS
-    title: "Tester groups"
-    description: |
-      Tester Groups that will be notified when the app is ready.
-      Setup groups in your TestFairy account testers page.
-    is_required: false
-    is_expand: false
-    value: ""
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_NOTIFY
-    title: "Email notification"
-    description: |
-      Sets if should email testers about new version.
-    is_required: false
-    is_expand: false
-    value: "off"
-    value_options: ["on", "off"]
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_AUTO_UPDATE
-    title: "Auto update"
-    description: |
-      If auto update is on all users will be prompt to update
-      to this build next time they run the app.
-    is_required: false
-    is_expand: false
-    value: "off"
-    value_options: ["on", "off"]
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_MAX_TEST_DURATION
-    title: "Recording duration"
-    description: |
-      Maximum session recording length, eg 20m or 1h. Maximum 24h.
-    is_required: false
-    is_expand: false
-    value: "10m"
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_VIDEO_RECORDING
-    title: "Video recording"
-    description: |
-      Sets if video recording is enabled for this build.
-    is_required: false
-    is_expand: false
-    value: "off"
-    value_options: ["on", "wifi", "off"]
-    is_dont_change_value: false
-  - 
-    mapped_to: TESTFAIRY_COMMENT
-    title: "Comments"
-    description: |
-      Comment text will be included in the email sent to testers.
-    is_required: false
-    is_expand: false
-    value: ""
-    is_dont_change_value: false
+  - api_key: ""
+    opts:
+      title: "TestFairy API key"
+      summary: ""
+      description: |-
+        API key from TestFairy.
+        You can find your API key under the settings menu.
+      is_required: true
+      is_expand: false
+      is_dont_change_value: false
+  - ipa_path: ""
+    opts:
+      title: "IPA path"
+      summary: ""
+      description: |-
+        Path for the IPA to upload to TestFairy.
+      is_required: true
+      is_expand: true
+      is_dont_change_value: false
+  - dsym_path: ""
+    opts:
+      title: "dSYM path"
+      summary: ""
+      description: |-
+        Path for the dSYM to upload to TestFairy.
+      is_required: false
+      is_expand: true
+      is_dont_change_value: false
+  - tester_groups: ""
+    opts:
+      title: "Tester groups"
+      summary: ""
+      description: |-
+        Tester Groups that will be notified when the app is ready.
+        Setup groups in your TestFairy account testers page.
+      is_required: false
+      is_expand: false
+      is_dont_change_value: false
+  - notify: "off"
+    opts:
+      title: "Email notification"
+      summary: ""
+      description: |-
+        Sets if should email testers about new version.
+      value_options: ["on", "off"]
+      is_required: false
+      is_expand: false
+      is_dont_change_value: false
+  - auto_update: "off"
+    opts:
+      title: "Auto update"
+      summary: ""
+      description: |-
+        If auto update is on all users will be prompt to update
+        to this build next time they run the app.
+      value_options: ["on", "off"]
+      is_required: false
+      is_expand: false
+      is_dont_change_value: false
+  - max_test_duration: "10m"
+    opts:
+      title: "Recording duration"
+      summary: ""
+      description: |-
+        Maximum session recording length, eg 20m or 1h. Maximum 24h.
+      is_required: false
+      is_expand: false
+      is_dont_change_value: false
+  - video_recording: "off"
+    opts:
+      title: "Video recording"
+      summary: ""
+      description: |-
+        Sets if video recording is enabled for this build.
+      value_options: ["on", "wifi", "off"]
+      is_required: false
+      is_expand: false
+      is_dont_change_value: false
+  - comment: ""
+    opts:
+      title: "Comments"
+      summary: ""
+      description: |-
+        Comment text will be included in the email sent to testers.
+      is_required: false
+      is_expand: false
+      is_dont_change_value: false
 outputs: []

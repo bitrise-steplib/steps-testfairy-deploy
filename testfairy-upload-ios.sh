@@ -8,24 +8,24 @@ UPLOADER_VERSION=1.09
 
 # Tester Groups that will be notified when the app is ready. Setup groups in your TestFairy account testers page.
 # This parameter is optional, leave empty if not required
-TESTER_GROUPS="$TESTFAIRY_TESTER_GROUPS"
+TESTER_GROUPS="$tester_groups"
 
 # Should email testers about new version. Set to "off" to disable email notifications.
-NOTIFY="$TESTFAIRY_NOTIFY"
+NOTIFY="$notify"
 
 # If AUTO_UPDATE is "on" all users will be prompt to update to this build next time they run the app
-AUTO_UPDATE="$TESTFAIRY_AUTO_UPDATE"
+AUTO_UPDATE="$auto_update"
 
-# The maximum recording duration for every test. 
-MAX_DURATION="$TESTFAIRY_MAX_TEST_DURATION"
+# The maximum recording duration for every test.
+MAX_DURATION="$max_test_duration"
 
-# Is video recording enabled for this build. valid values:  "on", "off", "wifi" 
-VIDEO="$TESTFAIRY_VIDEO_RECORDING"
+# Is video recording enabled for this build. valid values:  "on", "off", "wifi"
+VIDEO="$video_recording"
 
 # Comment text will be included in the email sent to testers
-COMMENT="$TESTFAIRY_COMMENT"
+COMMENT="$comment"
 
-DSYM_FILENAME="$TESTFAIRY_DSYM_PATH"
+DSYM_FILENAME="$dsym_path"
 
 # locations of various tools
 CURL=curl
@@ -36,7 +36,7 @@ usage() {
 	echo "Usage: testfairy-upload-ios.sh IPA_FILENAME"
 	echo
 }
-	
+
 verify_tools() {
 
 	# Windows users: this script requires curl. If not installed please get from http://cygwin.com/
@@ -50,7 +50,7 @@ verify_tools() {
 }
 
 verify_settings() {
-	if [ -z "${TESTFAIRY_API_KEY}" ]; then
+	if [ -z "${api_key}" ]; then
 		usage
 		echo "Please update API_KEY with your private API key, as noted in the Settings page"
 		exit 1
@@ -78,9 +78,9 @@ DATE=`date`
 
 /bin/echo -n "Uploading ${IPA_FILENAME} to TestFairy.. "
 if [ ! -f "${DSYM_FILENAME}" ]; then
-	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${IPA_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
+	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${api_key} -F file="@${IPA_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
 else
-	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${IPA_FILENAME}" -F symbols_file="@${DSYM_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
+	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${api_key} -F file="@${IPA_FILENAME}" -F symbols_file="@${DSYM_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
 fi
 
 MESSAGE=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"message"\s*:\s*"\([^"]*\)".*/\1/p' )
