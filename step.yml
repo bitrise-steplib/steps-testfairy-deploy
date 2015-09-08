@@ -29,7 +29,7 @@ inputs:
       is_required: true
       is_expand: false
       is_dont_change_value: false
-  - ipa_path: ""
+  - ipa_path: "$BITRISE_IPA_PATH"
     opts:
       title: "IPA path"
       summary: ""
@@ -38,7 +38,7 @@ inputs:
       is_required: true
       is_expand: true
       is_dont_change_value: false
-  - dsym_path: ""
+  - dsym_path: "$BITRISE_DSYM_PATH"
     opts:
       title: "dSYM path"
       summary: ""

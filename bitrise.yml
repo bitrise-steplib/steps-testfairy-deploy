@@ -5,16 +5,17 @@ app:
   envs:
   # define these in your .bitrise.secrets.yml
   - api_key:
-  - ipa_path:
-  - dsym_path:
-  - tester_groups:
-  - notify:
-  - auto_update:
-  - video_recording:
-  - comment: 
+  - BITRISE_IPA_PATH:
+  - BITRISE_DSYM_PATH:
 
 workflows:
   test:
     steps:
     - path::./:
         inputs:
+        - notify: "off"
+        - auto_update: "off"
+        - max_test_duration: "10m"
+        - video_recording: "off"
+        - comment: ""
+        - tester_groups: ""
