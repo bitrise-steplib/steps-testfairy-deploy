@@ -100,4 +100,6 @@ fi
 write_section_to_formatted_output "## Deploy Success"
 echo_string_to_formatted_output "* **Build URL**: [${URL}](${URL})"
 
+envman add --key TESTFAIRY_PUBLIC_INSTALL_PAGE_URL --value "${URL}"
+
 exit 0
