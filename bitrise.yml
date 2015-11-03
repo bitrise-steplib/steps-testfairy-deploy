@@ -1,21 +1,33 @@
 format_version: 0.9.10
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
-
 app:
   envs:
-  # define these in your .bitrise.secrets.yml
-  - api_key:
-  - BITRISE_IPA_PATH:
-  - BITRISE_DSYM_PATH:
-
+  - api_key: null
+  - BITRISE_IPA_PATH: null
+  - BITRISE_DSYM_PATH: null
 workflows:
   test:
     steps:
     - path::./:
         inputs:
         - notify: "off"
+          opts: {}
         - auto_update: "off"
-        - max_test_duration: "10m"
-        - video_recording: "off"
+          opts: {}
+        - max_test_duration: 10m
+          opts: {}
+        - opts: {}
+          video_recording: "off"
         - comment: ""
-        - tester_groups: ""
+          opts: {}
+        - opts: {}
+          tester_groups: ""
+        outputs:
+        - TESTFAIRY_PUBLIC_INSTALL_PAGE_URL: ""
+          opts:
+            title: Public Install Page URL
+    - script:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            echo "TESTFAIRY_PUBLIC_INSTALL_PAGE_URL: ${TESTFAIRY_PUBLIC_INSTALL_PAGE_URL}"
