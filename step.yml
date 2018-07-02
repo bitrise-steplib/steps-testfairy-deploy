@@ -31,7 +31,7 @@ inputs:
         API key from TestFairy.
         You can find your API key under the settings menu.
       is_required: true
-      is_expand: false
+      is_expand: true
       is_dont_change_value: false
   - ipa_path: "$BITRISE_IPA_PATH"
     opts:
