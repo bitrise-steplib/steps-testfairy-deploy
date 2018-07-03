@@ -3,7 +3,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 app:
   envs:
-  - BITRISE_STEP_VERSION: 2.0.1
+  - BITRISE_STEP_VERSION: 2.1.0
   - BITRISE_STEP_GIT_CLONE_URL: https://github.com/bitrise-io/steps-testfairy-deploy.git
   - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
 
