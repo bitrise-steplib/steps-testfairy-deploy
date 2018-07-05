@@ -1,6 +1,11 @@
-## Changelog (Current version: 2.1.0)
+## Changelog (Current version: 2.1.1)
 
 -----------------
+
+### 2.1.1 (2018 Jul 05)
+
+* [b8c78e7] Prepare for 2.1.1
+* [5e8a4f9] step.yml clean (+1 squashed commit) (#9)
 
 ### 2.1.0 (2018 Jul 03)
 
@@ -31,4 +36,4 @@
 
 -----------------
 
-Updated: 2018 Jul 03
+Updated: 2018 Jul 05
