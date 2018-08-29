@@ -1,6 +1,5 @@
 title: "TestFairy Deploy"
-summary: |-
-  Deploy your App to TestFairy.
+summary: Deploy your App to TestFairy.
 description: |-
   Deploy your awesome App to Testfairy easily, making use of multiple configuration options.
   
@@ -44,6 +43,8 @@ inputs:
 
         **NOTE** You can find your API key under the settings menu.
       is_required: true
+      is_expand: true
+      is_sensitive: true
   - ipa_path: "$BITRISE_IPA_PATH"
     opts:
       title: IPA path

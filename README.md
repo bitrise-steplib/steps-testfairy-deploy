@@ -138,3 +138,9 @@ in the **steps/** folder.
 
 *Before you submit your Step into a Step Library you should test it in a StepLib compatible system.
 You can use a free [Bitrise](http://www.bitrise.io/) account to test your Step.*
+
+## Trigger a new release
+
+- __merge every code changes__ to the `master` branch
+- __push the new version tag__ to the `master` branch
+
