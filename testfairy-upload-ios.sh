@@ -30,7 +30,7 @@ DSYM_FILENAME="$dsym_path"
 # locations of various tools
 CURL=curl
 
-SERVER_ENDPOINT=https://app.testfairy.com
+SERVER_ENDPOINT=https://upload.testfairy.com
 
 usage() {
 	echo "Usage: testfairy-upload-ios.sh IPA_FILENAME"
