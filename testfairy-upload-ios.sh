@@ -55,6 +55,10 @@ verify_settings() {
 		echo "Please update API_KEY with your private API key, as noted in the Settings page"
 		exit 1
 	fi
+
+	if ![ -z "${server_endpoint}" ]; then
+		SERVER_ENDPOINT=${server_endpoint}
+	fi
 }
 
 if [ $# -ne 1 ]; then
