@@ -82,7 +82,7 @@ DATE=`date`
 
 /bin/echo -n "Uploading ${IPA_FILENAME} to TestFairy.. "
 if [ ! -f "${DSYM_FILENAME}" ]; then
-	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${api_key} -F file="@${IPA_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
+	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${api_key} -F file="@${IPA_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers_groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
 else
 	JSON=$( ${CURL} -s ${SERVER_ENDPOINT}/api/upload -F api_key=${api_key} -F file="@${IPA_FILENAME}" -F symbols_file="@${DSYM_FILENAME}" -F video="${VIDEO}" -F max-duration="${MAX_DURATION}" -F comment="${COMMENT}" -F testers-groups="${TESTER_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy iOS Command Line Uploader ${UPLOADER_VERSION}" )
 fi
