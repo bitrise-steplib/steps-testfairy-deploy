@@ -56,7 +56,7 @@ verify_settings() {
 		exit 1
 	fi
 
-	if ![ -z "${server_endpoint}" ]; then
+	if [ ! -z "${server_endpoint}" ]; then
 		SERVER_ENDPOINT=${server_endpoint}
 	fi
 }
