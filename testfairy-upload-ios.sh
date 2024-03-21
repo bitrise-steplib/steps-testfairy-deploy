@@ -89,13 +89,14 @@ fi
 
 MESSAGE=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"message"\s*:\s*"\([^"]*\)".*/\1/p' )
 URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"build_url"\s*:\s*"\([^"]*\)".*/\1/p' )
+APP_URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"app_url"\s*:\s*"\([^"]*\)".*/\1/p' )
 
 if [ ! -z "$MESSAGE" ]; then
 	write_section_to_formatted_output "## Deploy Failed"
 	echo_string_to_formatted_output "Failed to upload the build due to the following error:"
 	echo_string_to_formatted_output "$MESSAGE"
 	exit 1
-elif [ -z "$URL" ]; then
+elif [ -z "$URL" ] || [ -z "$APP_URL" ]; then
 	write_section_to_formatted_output "## Deploy Failed"
 	echo_string_to_formatted_output "Build uploaded, but no reply from server. Please contact support@testfairy.com"
 	exit 1
@@ -103,7 +104,9 @@ fi
 
 write_section_to_formatted_output "## Deploy Success"
 echo_string_to_formatted_output "* **Build URL**: [${URL}](${URL})"
+echo_string_to_formatted_output "* **APP URL**: [${APP_URL}](${APP_URL})"
 
 envman add --key TESTFAIRY_PUBLIC_INSTALL_PAGE_URL --value "${URL}"
+envman add --key TESTFAIRY_APP_URL --value "${APP_URL}"
 
 exit 0
