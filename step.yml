@@ -23,12 +23,12 @@ host_os_tags:
   - "osx-10.10"
 
 project_type_tags:
-  - ios
-  - xamarin
-  - react-native
   - cordova
-  - ionic
   - flutter
+  - ionic
+  - ios
+  - kotlin-multiplatform
+  - react-native
 
 type_tags:
   - "test"
